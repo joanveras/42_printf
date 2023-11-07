@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jveras <jveras@student.42.rio>             +#+  +:+       +#+         #
+#    By: jveras <verasjoan587@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 08:59:36 by jveras            #+#    #+#              #
-#    Updated: 2023/11/03 09:02:57 by jveras           ###   ########.fr        #
+#    Updated: 2023/11/06 14:01:36 by jveras           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = libftprintf.a
 
-SRCS = $(wildcard libft/*.c) $(wildcard libftprintf/*.c)
+SRCS = $(wildcard *.c) $(wildcard libftprintf/*.c)
 
 OBJS = $(SRCS:.c=.o)
 

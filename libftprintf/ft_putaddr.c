@@ -1,23 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putmem.c                                           :+:      :+:    :+:   */
+/*   ft_putaddr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveras <jveras@student.42.rio>             +#+  +:+       +#+        */
+/*   By: jveras <verasjoan587@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 10:46:14 by jveras            #+#    #+#             */
-/*   Updated: 2023/11/03 13:15:56 by jveras           ###   ########.fr       */
+/*   Created: 2023/11/07 08:23:55 by jveras            #+#    #+#             */
+/*   Updated: 2023/11/07 08:34:17 by jveras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	putmem(unsigned long n)
+static int	is_zero(void)
 {
-	int	i;
-	char	rem;
-	char	hex[14];
+	write(1, "(nil)", 5);
+	return (5);
+}
 
+static	int	print(char *hex, int i)
+{
+	int	char_counter;
+
+	char_counter = 0;
+	while (i--)
+	{
+		ft_putchar_fd(hex[i], 1);
+		char_counter++;
+	}
+	return (char_counter);
+}
+
+int	ft_putaddr(unsigned long n)
+{
+	int		i;
+	char	rem;
+	char	hex[16];
+
+	if (n == 0)
+		return (is_zero());
 	i = 0;
 	while (n > 0)
 	{
@@ -31,6 +52,5 @@ void	putmem(unsigned long n)
 	}
 	hex[i++] = 'x';
 	hex[i++] = '0';
-	while (i--)
-		ft_putchar_fd(hex[i], 1);
+	return (print(hex, i));
 }

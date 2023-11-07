@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lower_hex.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveras <jveras@student.42.rio>             +#+  +:+       +#+        */
+/*   By: jveras <verasjoan587@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:34:35 by jveras            #+#    #+#             */
-/*   Updated: 2023/11/03 11:55:28 by jveras           ###   ########.fr       */
+/*   Created: 2023/11/07 08:24:33 by jveras            #+#    #+#             */
+/*   Updated: 2023/11/07 08:24:35 by jveras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	lower_hex(unsigned int n)
+int	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
-	unsigned long	num;
-	char	rem;
-	char	hex[8];
+	int	char_counter;
 
-	num = n;
-	i = 0;
-	while (num > 0)
+	if (!s)
 	{
-		rem = num % 16;
-		if (rem < 10)
-			hex[i] = rem + '0';
-		else
-			hex[i] = rem + ('7' + 32);
-		num = num / 16;
-		i++;
+		write(fd, "(null)", 6);
+		return (6);
 	}
-	while (i--)
-		ft_putchar_fd(hex[i], 1);
+	char_counter = 0;
+	while (*s)
+	{
+		write(fd, s++, 1);
+		char_counter++;
+	}
+	return (char_counter);
 }

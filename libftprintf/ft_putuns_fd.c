@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putuns_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveras2 <jveras2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jveras <verasjoan587@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 09:57:33 by jveras2           #+#    #+#             */
-/*   Updated: 2023/10/30 14:46:25 by jveras2          ###   ########.fr       */
+/*   Created: 2023/11/07 08:24:49 by jveras            #+#    #+#             */
+/*   Updated: 2023/11/07 08:24:51 by jveras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putuns_fd(unsigned int n, int fd)
 {
-	if (n == -2147483648)
-		ft_putstr_fd("-2147483648", fd);
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);
-	}
+	static int	char_counter;
+
+	char_counter = 0;
+	if (n == 4294967286)
+		return (ft_putstr_fd("4294967286", fd));
 	else if (n >= 10)
 	{
-		ft_putnbr_fd(n / 10, fd);
+		ft_putuns_fd(n / 10, fd);
 		ft_putchar_fd((n % 10) + '0', fd);
+		char_counter++;
 	}
 	else if (n < 10)
+	{
 		ft_putchar_fd((n % 10) + '0', fd);
+		char_counter++;
+	}
+	return (char_counter);
 }

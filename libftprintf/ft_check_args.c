@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_format.c                                     :+:      :+:    :+:   */
+/*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveras <jveras@student.42.rio>             +#+  +:+       +#+        */
+/*   By: jveras <verasjoan587@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:04:18 by jveras            #+#    #+#             */
-/*   Updated: 2023/11/03 13:22:31 by jveras           ###   ########.fr       */
+/*   Created: 2023/11/07 08:20:30 by jveras            #+#    #+#             */
+/*   Updated: 2023/11/07 08:23:29 by jveras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	check_format(const char *format, int i, va_list ap)
+int	ft_check_args(const char *format, int i, int counter, va_list ap)
 {
 	if (format[i + 1] == 'c')
-		ft_putchar_fd(va_arg(ap, int), 1);
+		counter += ft_putchar_fd(va_arg(ap, int), 1);
 	else if (format[i + 1] == 's')
-		ft_putstr_fd(va_arg(ap, char *), 1);
+		counter += ft_putstr_fd(va_arg(ap, char *), 1);
 	else if (format[i + 1] == 'p')
-		putmem(va_arg(ap, unsigned long));
+		counter += ft_putaddr(va_arg(ap, unsigned long));
 	else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-		ft_putnbr_fd(va_arg(ap, int), 1);
+		counter += ft_putnbr_fd(va_arg(ap, int), 1);
 	else if (format[i + 1] == 'u')
-		putuns_fd(va_arg(ap, unsigned int), 1);
+		counter += ft_putuns_fd(va_arg(ap, unsigned int), 1);
 	else if (format[i + 1] == 'x')
-		lower_hex(va_arg(ap, unsigned int));
+		counter += ft_lower_hex(va_arg(ap, unsigned int));
 	else if (format[i + 1] == 'X')
-		upper_hex(va_arg(ap, unsigned int));
+		counter += ft_upper_hex(va_arg(ap, unsigned int));
 	else if (format[i + 1] == '%')
-		ft_putchar_fd('%', 1);
+		counter += ft_putchar_fd('%', 1);
+	return (counter);
 }
